@@ -142,7 +142,7 @@ class StudentDAL {
     }
 
     /**
-     * checks whether given Roll exists or not
+     * Checks whether given Roll exists or not
      *
      * @param $roll
      * @param int $id
@@ -162,7 +162,7 @@ class StudentDAL {
     }
 
     /**
-     * checks whether given Id exists or not
+     * Checks whether given Id exists or not
      *
      * @param $id
      * @return bool
@@ -181,7 +181,7 @@ class StudentDAL {
     }
 
     /**
-     * checks whether given Email exists or not
+     * Checks whether given Email exists or not
      *
      * @param $email
      * @param int $id

@@ -34,14 +34,14 @@ class StudentBLL {
 
         if( count($all_students) > 0 ) {
 
-            $all_students_html .= '<table>';
+            $all_students_html .= '<table class="table table-bordered">';
 
                 $all_students_html .= '<tr>';
                     $all_students_html .= '<th>Name</th>';
                     $all_students_html .= '<th>Roll</th>';
                     $all_students_html .= '<th>Email</th>';
                     $all_students_html .= '<th>Date of Birth</th>';
-                    $all_students_html .= '<th colspan="2">Action</th>';
+                    $all_students_html .= '<th class="center" colspan="2">Action</th>';
                 $all_students_html .= '</tr>';
 
             foreach($all_students as $student) {
@@ -50,12 +50,15 @@ class StudentBLL {
                     $all_students_html .= '<td>'. $student->GetRoll() .'</td>';
                     $all_students_html .= '<td>'. $student->GetEmail() .'</td>';
                     $all_students_html .= '<td>'. $student->GetDateOfBirth() .'</td>';
-                    $all_students_html .= '<td><a href="edit.php?id='. $student->GetId() .'">Edit</a></td>';
-                    $all_students_html .= '<td><a href="index.php?id='. $student->GetId() .'&delete=yes">Delete</a></td>';
+                    $all_students_html .= '<td class="center"><a href="edit.php?id='. $student->GetId() .'">Edit</a></td>';
+                    $all_students_html .= '<td class="center"><a onclick="return confirm(\'Do you really want to delete this record?\')" href="index.php?id='. $student->GetId() .'&delete=yes">Delete</a></td>';
                 $all_students_html .= '</tr>';
             }
 
             $all_students_html .= '</table>';
+
+        } else {
+            $all_students_html = '<div class="alert alert-warning" role="alert">No student found. Try add some.</div>';
         }
 
         return $all_students_html;
@@ -72,14 +75,14 @@ class StudentBLL {
 
         if( count($search_student) > 0 ) {
 
-            $all_students_html .= '<table>';
+            $all_students_html .= '<table class="table table-bordered">';
 
                 $all_students_html .= '<tr>';
                     $all_students_html .= '<th>Name</th>';
                     $all_students_html .= '<th>Roll</th>';
                     $all_students_html .= '<th>Email</th>';
                     $all_students_html .= '<th>Date of Birth</th>';
-                    $all_students_html .= '<th colspan="2">Action</th>';
+                    $all_students_html .= '<th class="center" colspan="2">Action</th>';
                 $all_students_html .= '</tr>';
 
             foreach($search_student as $student) {
@@ -88,8 +91,8 @@ class StudentBLL {
                     $all_students_html .= '<td>'. $student->GetRoll() .'</td>';
                     $all_students_html .= '<td>'. $student->GetEmail() .'</td>';
                     $all_students_html .= '<td>'. $student->GetDateOfBirth() .'</td>';
-                    $all_students_html .= '<td><a href="edit.php?id='. $student->GetId() .'">Edit</a></td>';
-                    $all_students_html .= '<td><a href="index.php?id='. $student->GetId() .'&delete=yes">Delete</a></td>';
+                    $all_students_html .= '<td class="center"><a href="edit.php?id='. $student->GetId() .'">Edit</a></td>';
+                    $all_students_html .= '<td class="center"><a href="index.php?id='. $student->GetId() .'&delete=yes">Delete</a></td>';
                 $all_students_html .= '</tr>';
             }
 
