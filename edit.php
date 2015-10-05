@@ -56,7 +56,7 @@ include_once("Templates/header.php");
         <div class="form-group">
             <label for="studentEmail" class="col-sm-2 control-label">Email</label>
             <div class="col-sm-4">
-                <input type="text" value="<?php echo $aStudent->GetEmail(); ?>" name="studentEmail" id="studentEmail" class="form-control" placeholder="Email" />
+                <input type="email" value="<?php echo $aStudent->GetEmail(); ?>" name="studentEmail" id="studentEmail" class="form-control" placeholder="Email" />
             </div>
         </div>
         <div class="form-group">
