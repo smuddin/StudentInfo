@@ -30,7 +30,7 @@ class StudentBLL {
     public function GenerateHtmlForAllStudents() {
 
         $all_students_html = '';
-        $all_students = $this->studentDal->GetAllStudents();
+        $all_students = $this->GetAllStudents();
 
         if( count($all_students) > 0 ) {
 

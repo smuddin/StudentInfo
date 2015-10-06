@@ -7,11 +7,12 @@
  
 class StudentDTO {
 
-    private $id;
-    private $name;
-    private $roll;
-    private $email;
-    private $dateOfBirth;
+    // ToDo: Private access modifiers is not showing in json_encode method
+    public $id;
+    public $name;
+    public $roll;
+    public $email;
+    public $dateOfBirth;
 
     function StudentDTO($id, $roll, $name, $email, $dateOfBirth) {
         $this->id = $id;

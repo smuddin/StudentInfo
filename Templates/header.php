@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-    <meta name="description" content="This is a simple implementation of OOP in PHP. This application is created for educational purpose." />
+    <meta name="description" content="This is a simple implementation of OOP using PHP. This application is created for educational purpose." />
     <meta name="author" content="Arif Uddin" />
 
     <title><?php echo $page_title; ?></title>
@@ -25,7 +25,7 @@
 
 </head>
 
-<body>
+<body ng-app="studentInfoApp" ng-controller="studentController">
 
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -47,7 +47,7 @@
                 <div class="form-group">
                     <input type="text" name="studentNameSearch" id="studentNameSearch" value="<?php if (isset($search_string) && $search_string != '') { echo $search_string; } ?>" class="form-control" placeholder="Search for students" />
                 </div>
-                <input type="submit" name="studentSubmitButton" id="studentSubmitButton" value="Search" class="btn btn-default" />
+                <button type="submit" name="studentSubmitButton" id="studentSubmitButton" value="Search" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
             </form>
         </div><!--/.nav-collapse -->
     </div>
@@ -56,3 +56,4 @@
 
 <!-- Begin page content -->
 <div class="container">
+
