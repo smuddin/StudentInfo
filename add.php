@@ -1,27 +1,43 @@
 <?php
 
 require_once('loader.php');
+$errorMessage = '';
 
 if( isset($_POST['studentSubmitButton']) && $_POST['studentSubmitButton'] == 'Add Student' ) {
 
     $studentBllObj = new StudentBLL();
-    $newStudent = new StudentDTO(0, $_POST['studentRoll'], $_POST['studentName'], $_POST['studentEmail'], $_POST['studentDateOfBirth']);
+    $studentName = $_POST['studentName'];
+    $studentRoll = $_POST['studentRoll'];
+    $studentEmail = $_POST['studentEmail'];
+    $studentDateOfBirth = $_POST['studentDateOfBirth'];
+
+    $newStudent = new StudentDTO(0, $studentRoll, $studentName, $studentEmail, $studentDateOfBirth);
     $addStudentResult = $studentBllObj->AddStudent($newStudent);
 
     if($addStudentResult > 0) {
-        header("Location: edit.php?id=".$addStudentResult);
+        header("Location: edit.php?id=". $addStudentResult .'&action=add');
+    } else {
+        if ($studentBllObj->errorMessage != '') {
+            $errorMessage = $studentBllObj->errorMessage;
+        } else {
+            $errorMessage = 'Record can\'t be added. Operation failed.';
+        }
     }
 }
 
-$page_title = "Add New Student";
+$pageTitle = 'Add New Student';
 include_once("Templates/header.php");
 
 ?>
 
 
 <div class="page-header">
-    <h1>Add a New Student</h1>
+    <h1>Add New Student</h1>
 </div>
+
+<?php if ($errorMessage != ''): ?>
+    <div class="alert alert-danger"><?php echo $errorMessage; ?></div>
+<?php endif; ?>
 
 
     <form action="add.php" method="post" name="studentInfoForm" id="studentInfoForm" class="form-horizontal">

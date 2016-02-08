@@ -1,13 +1,9 @@
 <?php
-/**
- * User: Arif Uddin
- * Date: 4/6/12
- * Time: 4:32 PM
- */
 
 class StudentBLL {
 
     private $studentDal;
+    public $errorMessage;
 
     public function StudentBLL() {
         $this->studentDal = new StudentDAL();
@@ -58,20 +54,20 @@ class StudentBLL {
             $all_students_html .= '</table>';
 
         } else {
-            $all_students_html = '<div class="alert alert-warning" role="alert">No student found. Try add some.</div>';
+            $all_students_html = '<div class="alert alert-warning" role="alert">No student found. Try <a href="add.php">add</a> some.</div>';
         }
 
         return $all_students_html;
     }
 
-    public function SearchStudentByName($studentDto){
-        return $this->studentDal->SearchStudentByName($studentDto);
+    public function SearchStudentByName($studentName){
+        return $this->studentDal->SearchStudentByName($studentName);
     }
 
-    public function GenerateHtmlForSearchStudentByName($studentDto) {
+    public function GenerateHtmlForSearchStudentByName($studentName) {
 
         $all_students_html = '';
-        $search_student = $this->SearchStudentByName($studentDto);
+        $search_student = $this->SearchStudentByName($studentName);
 
         if( count($search_student) > 0 ) {
 
@@ -107,6 +103,7 @@ class StudentBLL {
         $insertedId = 0;
 
         if($studentDto->GetName() == '' || $studentDto->GetRoll() == '' || $studentDto->GetEmail() == '') {
+            $this->errorMessage = 'Student Name, Roll and Email is required.';
             return $insertedId;
         }
 
@@ -122,6 +119,7 @@ class StudentBLL {
         $affectedRows = 0;
 
         if($studentDto->GetName() == '' || $studentDto->GetRoll() == '' || $studentDto->GetEmail() == '') {
+            $this->errorMessage = 'Student Name, Roll and Email is required.';
             return $affectedRows;
         }
 
@@ -145,38 +143,44 @@ class StudentBLL {
         return $affectedRows;
     }
 
-    public function DeleteAStudent($studentDto) {
+    public function DeleteStudent($studentId) {
 
         $affectedRows = 0;
-
-        if($studentDto->GetId() == '') {
-            return $affectedRows;
-        }
-
-        if( $this->IsValidStudent($studentDto) ) {
-            $affectedRows = (int)$this->studentDal->DeleteAStudent($studentDto);
+        
+        if($studentId > 0) {
+            if ($this->IsIdExists($studentId)) {
+                $affectedRows = (int)$this->studentDal->DeleteStudent($studentId);
+            } else {
+                $this->errorMessage = 'Record not found.';
+            }
+        } else {
+            $this->errorMessage = 'Invalid Id.';
         }
 
         return $affectedRows;
     }
 
     public function IsValidStudent($studentDto) {
-        if($this->IfRollExists($studentDto->GetRoll(), $studentDto->GetId()) || $this->IfEmailExists($studentDto->GetEmail(), $studentDto->GetId()) || $this->IfIdExists($studentDto->GetId())) {
+        if($this->IsRollExists( $studentDto->GetRoll(), $studentDto->GetId()) ) {
+            $this->errorMessage = 'Roll '. $studentDto->GetRoll() .' already exists. Try a different one.';
+            return false;
+        } elseif ( $this->IsEmailExists($studentDto->GetEmail(), $studentDto->GetId()) ) {
+            $this->errorMessage = 'Email '. $studentDto->GetEmail() .' already exists. Try a different one.';
             return false;
         } else {
             return true;
         }
     }
 
-    public function IfIdExists($id) {
-        return $this->studentDal->IfIdExists($id);
+    public function IsIdExists($id) {
+        return $this->studentDal->IsIdExists($id);
     }
 
-    public function IfRollExists($roll, $id) {
-        return $this->studentDal->IfRollExists($roll, $id);
+    public function IsRollExists($roll, $id) {
+        return $this->studentDal->IsRollExists($roll, $id);
     }
 
-    public function IfEmailExists($email, $id) {
-        return $this->studentDal->IfEmailExists($email, $id);
+    public function IsEmailExists($email, $id) {
+        return $this->studentDal->IsEmailExists($email, $id);
     }
 }

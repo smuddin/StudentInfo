@@ -9,7 +9,7 @@
     <meta name="description" content="This is a simple implementation of OOP in PHP. This application is created for educational purpose." />
     <meta name="author" content="Arif Uddin" />
 
-    <title><?php echo $page_title; ?></title>
+    <title><?php echo $pageTitle; ?></title>
 
     <!-- Bootstrap core CSS -->
     <link href="Assets/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />

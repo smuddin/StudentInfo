@@ -2,15 +2,16 @@
     require_once('loader.php');
 
     $searchResult = array();
-    $search_string = '';
+    $searchString = '';
     $message = '';
 
     if(isset($_POST['studentSubmitButton']) && $_POST['studentSubmitButton'] == 'Search') {
 
-        $search_string = $_POST['studentNameSearch'];
+        $searchString = $_POST['studentNameSearch'];
+
         $studentBllObj = new StudentBLL();
-        $searchStudentByName = new StudentDTO(0, '', $_POST['studentNameSearch'], '', '');
-        $searchResult = $studentBllObj->GenerateHtmlForSearchStudentByName($searchStudentByName);
+        $studentName = $_POST['studentNameSearch'];
+        $searchResult = $studentBllObj->GenerateHtmlForSearchStudentByName($studentName);
 
         if(count($searchResult) == 0) {
             $message = "No student found. Try a different student name.";
@@ -18,7 +19,7 @@
 
     }
 
-$page_title = "Searching Student...";
+$pageTitle = "Searching Student...";
 include_once("Templates/header.php");
 
 

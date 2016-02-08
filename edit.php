@@ -2,39 +2,71 @@
 
 require_once('loader.php');
 
+$addSuccess = false;
+$updateSuccess = false;
+$errorMessage = '';
+
 if(isset($_POST['studentSubmitButton']) && $_POST['studentSubmitButton'] == 'Update Student') {
 
     $studentBllObj = new StudentBLL();
-    $aStudent = new StudentDTO($_POST['studentId'], $_POST['studentRoll'], $_POST['studentName'], $_POST['studentEmail'], $_POST['studentDateOfBirth']);
+    $studentId = $_POST['studentId'];
+    $studentName = $_POST['studentName'];
+    $studentRoll = $_POST['studentRoll'];
+    $studentEmail = $_POST['studentEmail'];
+    $studentDateOfBirth = $_POST['studentDateOfBirth'];
+
+    $aStudent = new StudentDTO($studentId, $studentRoll, $studentName, $studentEmail, $studentDateOfBirth);
     $updateResult = $studentBllObj->UpdateStudent($aStudent);
 
     if($updateResult > 0) {
-        header("Location: edit.php?id=". $aStudent->GetId() ."&update=success");
+        $updateSuccess = true;
     } else {
-        header("Location: edit.php?id=". $aStudent->GetId() ."&update=failed");
+        if ($studentBllObj->errorMessage != '') {
+            $errorMessage = $studentBllObj->errorMessage;
+        } else {
+            $errorMessage = 'Record can\'t be updated. Operation failed.';
+        }
     }
 
 } elseif(isset($_GET['id']) && (int)$_GET['id'] >0) {
 
     $studentId = (int)$_GET['id'];
+    $action = '';
+    if (isset($_GET['action'])) {
+        $action = $_GET['action'];
+    }
 
     $studentBllObj = new StudentBLL();
     $aStudent = $studentBllObj->GetStudent($studentId);
+
+    if ($action == 'add') {
+        $addSuccess = true;
+    }
 
 } else {
     header("Location: index.php");
 }
 
 
-$page_title = "Edit Student";
+$pageTitle = "Edit Student";
 include_once("Templates/header.php");
-
 
 ?>
 
     <div class="page-header">
         <h1>Edit Student</h1>
     </div>
+
+
+    <?php if ($addSuccess === true): ?>
+        <div class="alert alert-success">Record added successfully.</div>
+    <?php endif; ?>
+    <?php if ($updateSuccess === true): ?>
+        <div class="alert alert-success">Record updated successfully.</div>
+    <?php endif; ?>
+    <?php if ($errorMessage != ''): ?>
+        <div class="alert alert-danger"><?php echo $errorMessage; ?></div>
+    <?php endif; ?>
 
 
     <form action="edit.php" method="post" name="studentInfoForm" id="studentInfoForm" class="form-horizontal">

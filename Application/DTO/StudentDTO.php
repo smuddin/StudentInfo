@@ -26,5 +26,4 @@ class StudentDTO {
     public function GetRoll() { return $this->roll; }
     public function GetEmail() { return $this->email; }
     public function GetDateOfBirth() { return $this->dateOfBirth; }
-
 }

@@ -3,19 +3,28 @@
 require_once('loader.php');
 
 $studentBllObj = new StudentBLL();
-$allStudents = $studentBllObj->GenerateHtmlForAllStudents();
+$deleteSuccess = false;
+$errorMessage = '';
 
-if( isset($_GET['delete']) && $_GET['delete']=='yes' ) {
+if( isset($_REQUEST['delete']) && $_REQUEST['delete']=='yes' ) {
 
-    $deleteAStudent = new StudentDTO($_GET['id'], '', '', '', '');
-    $deleteStudent = $studentBllObj->DeleteAStudent($deleteAStudent);
+    $studentId = (int)$_REQUEST['id'];
+    $deleteResult = $studentBllObj->DeleteStudent($studentId);
 
-    if($deleteStudent > 0) {
-        header("Location: index.php");
+    if($deleteResult > 0) {
+        $deleteSuccess = true;
+    } else {
+        if ($studentBllObj->errorMessage != '') {
+            $errorMessage = $studentBllObj->errorMessage;
+        } else {
+            $errorMessage = 'Record can\'t be deleted. Operation failed.';
+        }
     }
 }
 
-$page_title = "Student Information";
+$allStudents = $studentBllObj->GenerateHtmlForAllStudents();
+
+$pageTitle = "Student Information";
 include_once("Templates/header.php");
 
 ?>
@@ -24,6 +33,12 @@ include_once("Templates/header.php");
     <h1>List of Students</h1>
 </div>
 
+<?php if ($deleteSuccess === true): ?>
+<div class="alert alert-success">Record deleted successfully.</div>
+<?php endif; ?>
+<?php if ($errorMessage != ''): ?>
+    <div class="alert alert-danger"><?php echo $errorMessage; ?></div>
+<?php endif; ?>
 
 <?php
 

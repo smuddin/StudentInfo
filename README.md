@@ -23,17 +23,23 @@ Follow the instruction below.
 There is only one table is used for the application. Create the table using the following SQL code.
 
 ```sql
-    CREATE TABLE `student` (
-        `Id` int(11) NOT NULL auto_increment,
-        `Roll` varchar(50) default NULL,
-        `Name` varchar(255) default NULL,
-        `Email` varchar(255) default NULL,
-        `DateOfBirth` datetime default NULL,
-        PRIMARY KEY  (`Id`)
-    ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+CREATE TABLE `student` (
+    `Id` int(11) NOT NULL auto_increment,
+    `Roll` varchar(50) default NULL,
+    `Name` varchar(255) default NULL,
+    `Email` varchar(255) default NULL,
+    `DateOfBirth` datetime default NULL,
+    PRIMARY KEY  (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
 
-Alternatively, you can also run the sql script (`stdinfo.sql`) under the `__db` directory.
+Alternatively, you can also run the SQL script file named `stdinfo.sql` under the `__db` directory.
+
+## 3rd-party Libraries Used
+1. [ezSQL v2.03](https://github.com/ezSQL/ezSQL): This library gives very nice interface to interact with MySql database.
+2. [Twitter Bootstrap v3.3.5](http://getbootstrap.com/): Very popular frontend framework.
+3. [jQuery v1.11.3](https://jquery.com/) Most popular Javascript framework.
 
 **Note 1:** This application can be used for educational purpose.<br>
-**Note 2:** To avoid complexity, validation is kept to a minimum level.
+**Note 2:** To avoid complexity, validation is kept to a minimum level and security check for 
+[SQL Injection](https://en.wikipedia.org/wiki/SQL_injection) is not implemented.
