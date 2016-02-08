@@ -60,7 +60,7 @@ class StudentDAL {
      * @return bool|\StudentDTO
      */
     public function GetStudent($studentId) {
-        $sql = "SELECT * FROM Student WHERE Id=". $studentId ." LIMIT 1";
+        $sql = "SELECT * FROM Student WHERE Id=". $studentId;
         $aStudent = $this->db->get_row($sql, ARRAY_A);
 
         if(is_array($aStudent) && count($aStudent) > 0) {
@@ -98,7 +98,7 @@ class StudentDAL {
                     Name='". $studentDto->GetName() ."',
                     Email='". $studentDto->GetEmail() ."',
                     DateOfBirth='". $studentDto->GetDateOfBirth() ."'
-                WHERE Id=". $studentDto->GetId() ." LIMIT 1";
+                WHERE Id=". $studentDto->GetId();
 
         return $this->db->query($sql);
     }
@@ -136,7 +136,7 @@ class StudentDAL {
      */
     public function DeleteAStudent($studentDto) {
 
-        $sql = "DELETE FROM Student WHERE Id=". $studentDto->GetId() ." LIMIT 1";
+        $sql = "DELETE FROM Student WHERE Id=". $studentDto->GetId();
 
         return $this->db->query($sql);
     }

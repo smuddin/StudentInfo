@@ -11,7 +11,6 @@ if( isset($_GET['delete']) && $_GET['delete']=='yes' ) {
     $deleteStudent = $studentBllObj->DeleteAStudent($deleteAStudent);
 
     if($deleteStudent > 0) {
-        $log->info("Student Data deleted.");
         header("Location: index.php");
     }
 }

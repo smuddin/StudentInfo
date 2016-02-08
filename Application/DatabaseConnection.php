@@ -23,5 +23,4 @@ class DatabaseConnection {
         $db = new ezSQL_mysql($this->dbUser, $this->dbPassword, $this->dbName, $this->dbHost);
         return $db;
     }
-
 }

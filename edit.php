@@ -9,10 +9,8 @@ if(isset($_POST['studentSubmitButton']) && $_POST['studentSubmitButton'] == 'Upd
     $updateResult = $studentBllObj->UpdateStudent($aStudent);
 
     if($updateResult > 0) {
-        $log->info("Student Data updated.");
         header("Location: edit.php?id=". $aStudent->GetId() ."&update=success");
     } else {
-        $log->info("Student Data update attempt failed.");
         header("Location: edit.php?id=". $aStudent->GetId() ."&update=failed");
     }
 

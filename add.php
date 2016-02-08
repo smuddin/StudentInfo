@@ -9,7 +9,6 @@ if( isset($_POST['studentSubmitButton']) && $_POST['studentSubmitButton'] == 'Ad
     $addStudentResult = $studentBllObj->AddStudent($newStudent);
 
     if($addStudentResult > 0) {
-        $log->info("Student Data inserted.");
         header("Location: edit.php?id=".$addStudentResult);
     }
 }

@@ -23,5 +23,5 @@ CREATE TABLE `student` (
 -- ----------------------------
 -- Records 
 -- ----------------------------
-INSERT INTO `student` VALUES ('1', '028', 'Arif Uddin', 'mail2rupok@gmail.com', null);
+INSERT INTO `student` VALUES ('1', '028', 'John Doe', 'jdoe@example.org', null);
 INSERT INTO `student` VALUES ('2', null, null, null, null);
