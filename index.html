@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Student Information Application by smuddin</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Student Information Application</h1>
+        <h2>A simple PHP implementation of 3 tier architecture OOP application</h2>
+        <a href="https://github.com/smuddin/student-info-php-oop" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a id="student-information-application" class="anchor" href="#student-information-application" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Student Information Application</h1>
+
+<p>A simple PHP implementation of <a href="https://en.wikipedia.org/wiki/Multitier_architecture">3-tier architecture</a> OOP application.</p>
+
+<p>3-tier architecture is an implementation of <a href="https://en.wikipedia.org/wiki/Multilayered_architecture">Layer Architecture</a>. 
+The general idea behind this architecture is to separate code logic. The following layers are used most commonly in a 
+3-tier architecture.</p>
+
+<ul>
+<li>Presentation Layer</li>
+<li>Business Logic Layer</li>
+<li>Data Access Layer</li>
+</ul>
+
+<p>Layers only communicates with adjacent layer. For example, presentation layer communicates to business logic layer and 
+business logic layer communicates with both layers presentation and data access. But Data access layer can not directly 
+communicate with presentation layer.</p>
+
+<h2>
+<a id="configuration--install" class="anchor" href="#configuration--install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Configuration / Install</h2>
+
+<p>You need a PHP-MySql server installation to run the application. Only thing, you need to change is database configuration.
+Follow the instruction below.</p>
+
+<ol>
+<li>Open the file <code>Application/DatabaseConnection.php</code> in any text editor.</li>
+<li>In the constructor method, change the values for <code>$this-&gt;dbUser</code>, <code>$this-&gt;dbPassword</code>, <code>$this-&gt;dbName</code>, <code>$this-&gt;dbHost</code>
+</li>
+</ol>
+
+<p>There is only one table is used for the application. Create the table using the following SQL code.</p>
+
+<div class="highlight highlight-source-sql"><pre><span class="pl-k">CREATE</span> <span class="pl-k">TABLE</span> `<span class="pl-en">student</span>` (
+    <span class="pl-s"><span class="pl-pds">`</span>Id<span class="pl-pds">`</span></span> <span class="pl-k">int</span>(<span class="pl-c1">11</span>) <span class="pl-k">NOT NULL</span> auto_increment,
+    <span class="pl-s"><span class="pl-pds">`</span>Roll<span class="pl-pds">`</span></span> <span class="pl-k">varchar</span>(<span class="pl-c1">50</span>) default <span class="pl-k">NULL</span>,
+    <span class="pl-s"><span class="pl-pds">`</span>Name<span class="pl-pds">`</span></span> <span class="pl-k">varchar</span>(<span class="pl-c1">255</span>) default <span class="pl-k">NULL</span>,
+    <span class="pl-s"><span class="pl-pds">`</span>Email<span class="pl-pds">`</span></span> <span class="pl-k">varchar</span>(<span class="pl-c1">255</span>) default <span class="pl-k">NULL</span>,
+    <span class="pl-s"><span class="pl-pds">`</span>DateOfBirth<span class="pl-pds">`</span></span> datetime default <span class="pl-k">NULL</span>,
+    <span class="pl-k">PRIMARY KEY</span>  (<span class="pl-s"><span class="pl-pds">`</span>Id<span class="pl-pds">`</span></span>)
+) ENGINE<span class="pl-k">=</span>InnoDB DEFAULT CHARSET<span class="pl-k">=</span>utf8;</pre></div>
+
+<p>Alternatively, you can also run the SQL script file named <code>stdinfo.sql</code> under the <code>__db</code> directory.</p>
+
+<h2>
+<a id="3rd-party-libraries-used" class="anchor" href="#3rd-party-libraries-used" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3rd-party Libraries Used</h2>
+
+<ol>
+<li>
+<a href="https://github.com/ezSQL/ezSQL">ezSQL v2.03</a>: This library gives very nice interface to interact with MySql database.</li>
+<li>
+<a href="http://getbootstrap.com/">Twitter Bootstrap v3.3.5</a>: Very popular frontend framework.</li>
+<li>
+<a href="https://jquery.com/">jQuery v1.11.3</a> Most popular Javascript framework.</li>
+</ol>
+
+<p><strong>Note 1:</strong> This application can be used for educational purpose.<br>
+<strong>Note 2:</strong> To avoid complexity, validation is kept to a minimum level and security check for 
+<a href="https://en.wikipedia.org/wiki/SQL_injection">SQL Injection</a> is not implemented.</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/smuddin/student-info-php-oop/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/smuddin/student-info-php-oop/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/smuddin/student-info-php-oop"></a> is maintained by <a href="https://github.com/smuddin">smuddin</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
