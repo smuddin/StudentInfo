@@ -37,8 +37,8 @@ Alternatively, you can also run the SQL script file named `stdinfo.sql` under th
 
 ## 3rd-party Libraries Used
 1. [ezSQL v2.03](https://github.com/ezSQL/ezSQL): This library gives very nice interface to interact with MySql database.
-2. [Twitter Bootstrap v3.3.5](http://getbootstrap.com/): Very popular frontend framework.
-3. [jQuery v1.11.3](https://jquery.com/) Most popular Javascript framework.
+2. [Twitter Bootstrap v3.3.5](http://getbootstrap.com/) used as a frontend style library.
+3. [jQuery v1.11.3](https://jquery.com/) used as Javascript library.
 
 **Note 1:** This application can be used for educational purpose.<br>
 **Note 2:** To avoid complexity, validation is kept to a minimum level and security check for 
